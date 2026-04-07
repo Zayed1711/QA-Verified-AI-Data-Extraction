@@ -1,0 +1,12 @@
+# Ignore the secret keys
+.env
+
+# Ignore the virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore client data and outputs (Never leak client files!)
+messy_data/
+clean_database.csv
