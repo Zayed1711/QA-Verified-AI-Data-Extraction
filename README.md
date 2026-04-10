@@ -29,5 +29,5 @@ Designed specifically for high-liability sectors (Legal Operations, Logistics, F
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/yourusername/zero-hallucination-pipeline.git](https://github.com/yourusername/zero-hallucination-pipeline.git)
-cd zero-hallucination-pipeline
+git clone [https://github.com/Zayed1711/QA-Verified-AI-Data-Extraction.git](https://github.com/Zayed1711/QA-Verified-AI-Data-Extraction.git)
+cd QA-Verified-AI-Data-Extraction
