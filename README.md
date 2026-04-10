@@ -1,19 +1,33 @@
-# Zero-Hallucination AI Data Pipeline
+# 🛡️ Zero-Hallucination Data Pipeline
 
-An enterprise-grade, self-healing data extraction pipeline. This tool leverages the Gemini 2.5 Flash API to process unstructured text and PDFs, using a custom Python QA-loop to strictly validate output and force automated retries if the LLM hallucinates or misses data.
+![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Cloud-336791.svg)
+![Pydantic](https://img.shields.io/badge/Pydantic-v2-E92063.svg)
+![Gemini](https://img.shields.io/badge/LLM-Gemini_2.5_Flash-orange.svg)
 
-## The Problem
-Standard AI wrappers are unsafe for enterprise data migration because LLMs fail silently and hallucinate numbers. 
+## Overview
+Standard LLM wrappers are dangerous for enterprise operations because they silently hallucinate dates, financial figures, and legal clauses. 
 
-## The Solution
-This pipeline acts as a "QA Gatekeeper." It intercepts the AI's JSON output, runs strict validation checks (e.g., ensuring numeric values exist, catching missing keys), and automatically feeds errors back into the prompt to force the AI to correct itself *before* finalizing the data.
+The **Zero-Hallucination Pipeline** is an asynchronous, defensively engineered extraction engine. It intercepts probabilistic AI outputs, forces strict deterministic type-checking via Pydantic, and injects clean data into a secure relational cloud database. If the AI hallucinates, the pipeline catches it, logs the error, and prevents database corruption.
 
-## Core Features
-* **Automated QA Loop:** Self-corrects AI hallucinations in real-time.
-* **Bulk PDF Processing:** Scans directories and extracts unstructured text natively.
-* **Deterministic Output:** Forces rigid JSON architecture and exports to clean CSV spreadsheets.
+Designed specifically for high-liability sectors (Legal Operations, Logistics, Finance) that require 100% mathematical certainty from unstructured PDFs.
 
-## Tech Stack
-* Python 3
-* Google GenAI SDK (Gemini 2.5 Flash)
-* PyPDF
+## 🏗️ Core Architecture
+1. **The Ingestion Layer:** FastAPI web server accepts asynchronous PDF uploads.
+2. **The Extraction Engine:** `asyncio` manages concurrent worker pools to extract raw text and prompt the LLM.
+3. **The Gatekeeper:** Pydantic strictly validates the JSON payload. If `net_profit` is returned as a string instead of a float, the payload is rejected.
+4. **The Vault:** SQLAlchemy executes an ACID transaction, linking an operations audit log to the extracted metrics in a cloud-hosted PostgreSQL database.
+
+## ✨ Key Features
+* **Strict Schema Enforcement:** Zero unstructured data enters the database.
+* **Asynchronous Concurrency:** Processes multiple documents simultaneously utilizing `asyncio.Semaphore` for rate-limit protection.
+* **ACID Transactions:** Automated rollback mechanisms prevent partial data injection during API drops.
+* **Automated Audit Logging:** Every document processed (Success or Error) is logged with its exact failure trace for operations review.
+
+## 🚀 Quick Start
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/yourusername/zero-hallucination-pipeline.git](https://github.com/yourusername/zero-hallucination-pipeline.git)
+cd zero-hallucination-pipeline
